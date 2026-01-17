@@ -341,19 +341,19 @@ const ContactPage = () => {
             </svg>
 
             {/* Content Layer */}
-            <div className="relative z-10 w-full min-h-screen flex flex-col items-center pt-[35vh] md:pt-[30vh]">
+            <div className="relative z-10 w-full min-h-screen flex flex-col items-center pt-[25vh] md:pt-[30vh]">
 
                 {/* The Text Being Etched */}
-                <div ref={fullTextRef} className="relative mb-12 md:mb-20 p-4">
+                <div ref={fullTextRef} className="relative mb-8 md:mb-20 p-4 max-w-full overflow-hidden">
                     {/* Placeholder Ghost Text (Visible traces) */}
-                    <h1 className="absolute top-4 left-4 text-4xl md:text-8xl font-black text-[#1a1a1a] tracking-tighter w-full text-center select-none">
+                    <h1 className="absolute top-4 left-4 text-3xl md:text-8xl font-black text-[#1a1a1a] tracking-tighter w-full text-center select-none whitespace-nowrap">
                         CONTACT_ME
                     </h1>
 
                     {/* The Real Text (Masked) */}
                     <h1
                         ref={textMaskRef}
-                        className="contact-header relative text-4xl md:text-8xl font-black text-[#ff3333] tracking-tighter w-full text-center"
+                        className="contact-header relative text-3xl md:text-8xl font-black text-[#ff3333] tracking-tighter w-full text-center whitespace-nowrap"
                         style={{ clipPath: 'polygon(0 0, 0 0, 0 0, 0 0)' }}
                     >
                         CONTACT_ME
