@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { resumeData } from '../data';
 
 const Projects = () => {
+    const [activeProject, setActiveProject] = useState(null);
+
+    const toggleProject = (index) => {
+        if (activeProject === index) {
+            setActiveProject(null);
+        } else {
+            setActiveProject(index);
+        }
+    };
+
     return (
         <section className="py-20 px-4 md:px-20 w-full">
             <div className="mb-20 border-b border-[#ff3333]/20 pb-8 max-w-6xl mx-auto">
@@ -10,9 +20,13 @@ const Projects = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
                 {resumeData.projects.map((proj, i) => (
-                    <div key={i} className="group h-[500px] perspective-1000">
+                    <div
+                        key={i}
+                        className="group h-[500px] perspective-1000 cursor-pointer"
+                        onClick={() => toggleProject(i)}
+                    >
                         {/* 3D Card Wrapper */}
-                        <div className="relative w-full h-full transition-all duration-700 transform-style-3d group-hover:rotate-y-180">
+                        <div className={`relative w-full h-full transition-all duration-700 transform-style-3d ${activeProject === i ? 'rotate-y-180' : 'group-hover:rotate-y-180'}`}>
 
                             {/* FRONT FACE */}
                             <div className="absolute inset-0 w-full h-full bg-black/90 border border-[#ff3333]/30 p-8 flex flex-col justify-between backface-hidden">
@@ -40,7 +54,7 @@ const Projects = () => {
                                         {proj.desc}
                                     </p>
                                     <div className="text-[#ff3333] text-xs font-bold tracking-widest animate-pulse mt-4">
-                                        [ HOVER TO DECRYPT ]
+                                        [ HOVER / TAP TO DECRYPT ]
                                     </div>
                                 </div>
                             </div>

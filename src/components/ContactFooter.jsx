@@ -11,6 +11,39 @@ const ContactFooter = () => {
     const textRef = useRef(null);
 
     useEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top 95%", // Trigger almost immediately when footer enters view
+                }
+            });
+
+            // 1. Cubes Rise
+            tl.fromTo(".dead-cube",
+                { y: 100, opacity: 0, scale: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.6,
+                    stagger: { amount: 1, grid: "auto", from: "random" },
+                    ease: "back.out(2)"
+                }
+            );
+
+            // 2. Text Reveal (Ensure text is visible eventually)
+            tl.fromTo(textRef.current,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5 },
+                "-=0.5"
+            );
+
+            // 3. Blink
+            tl.to(textRef.current, { opacity: 0.2, duration: 0.1, yoyo: true, repeat: 3 });
+
+        }, containerRef);
+        return () => ctx.revert();
     }, []);
 
     return (

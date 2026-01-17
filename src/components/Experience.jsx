@@ -11,14 +11,14 @@ const Experience = () => {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.fromTo(".exp-card",
-                { y: 50, opacity: 0 },
+                { y: 50, autoAlpha: 0 },
                 {
                     scrollTrigger: {
                         trigger: containerRef.current,
-                        start: "top 90%", // Trigger much earlier for mobile
+                        start: "top 90%", // Keep early trigger for mobile
                     },
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                     stagger: 0.2,
                     duration: 0.8,
                     ease: "power2.out"
